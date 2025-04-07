@@ -1,12 +1,14 @@
 version: 1.0.{build}
-
 image: Visual Studio 2019
+
+configuration: Release  # Укажите конфигурацию
 
 build: false # Отключаем автоматический режим сборки MSBuild
 
 build_script:
-  - cmd: mkdir build
-  - cmd: cd build
-  - cmd: cmake -G "Visual Studio 16 2019" -DCMAKE_BUILD_TYPE=Release ..
-  - cmd: cmake --build . --config Release --target ALL_BUILD
-  - cmd: ctest -C Release .
+  - powershell: mkdir build
+  - powershell: cd build
+  - powershell: cmake -G "Visual Studio 16 2019" -DCMAKE_BUILD_TYPE=Release ..
+  - powershell: cmake --build . --config Release --target ALL_BUILD
+  # Запуск тестов, если они есть.
+  - powershell: ctest -C Release .
