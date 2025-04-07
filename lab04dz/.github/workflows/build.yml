@@ -1,0 +1,37 @@
+name: Build and Test
+
+on:
+  push:
+    branches: [ "main" ]  # Или ваша основная ветка
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        compiler: [gcc, clang]
+
+    steps:
+      - uses: actions/checkout@v3  # Клонирование репозитория
+
+      - name: Install Dependencies (если нужны)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libboost-dev # Пример зависимости
+          # ... другие зависимости
+
+      - name: Configure (GCC)
+        if: matrix.compiler == 'gcc'
+        run: cmake -B build -DCMAKE_BUILD_TYPE=Release
+
+      - name: Configure (Clang)
+        if: matrix.compiler == 'clang'
+        run: cmake -B build -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_C_COMPILER=clang
+
+      - name: Build
+        run: cmake --build build --config Release --parallel
+
+      - name: Test
+        run: ctest --test-dir build
