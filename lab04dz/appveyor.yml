@@ -1,0 +1,11 @@
+version: 1.0.{build}
+
+image: Visual Studio 2022
+
+build_script:
+  - cmd: mkdir build
+  - cmd: cd build
+  - cmd: cmake -G "Visual Studio 17 2022" -DCMAKE_BUILD_TYPE=Release ..
+  - cmd: cmake --build . --config Release --target ALL_BUILD
+  # Запуск тестов, если они есть.
+  - cmd: ctest -C Release .
