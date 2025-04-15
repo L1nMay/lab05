@@ -1,4 +1,31 @@
-version: 1.0.{build}
-build: false
+version: '{branch}.{build}' # Defines the build version
+
+image: Visual Studio 2019 # Specifies the build environment
+
+environment:
+  matrix:
+    - CMAKE_GENERATOR: "Visual Studio 16 2019"
+      CMAKE_BUILD_TYPE: "Release"
+
+before_build:
+  - echo "Configuring CMake..."
+  - cmake -H. -Bbuild -G "%CMAKE_GENERATOR%" -DCMAKE_BUILD_TYPE=%CMAKE_BUILD_TYPE%
+
 build_script:
-  - cmd: echo "Hello, world!"
+  - echo "Building..."
+  - cmake --build build --config %CMAKE_BUILD_TYPE%
+
+test: off # Assuming you don't have tests for now
+
+after_build:
+  - echo "Build completed!"
+
+artifacts:
+  - path: build\Release\*.*
+    name: ReleaseBuild
+
+notifications:
+  - provider: Email
+    to: your_email@example.com # Замените на свой email
+    on_build_success: true
+    on_build_failure: true

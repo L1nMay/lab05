@@ -1,0 +1,52 @@
+language: cpp
+sudo: required # Kali может потребовать sudo для некоторых операций
+
+dist: kali  # Используем kali (experimental)
+os: linux
+
+matrix:
+  include:
+    - compiler: gcc
+      addons:
+        apt:
+          packages:
+            - gcc  # Стандартный gcc
+            - g++
+      env: COMPILER="g++"
+    - compiler: clang
+      addons:
+        apt:
+          packages:
+            - clang
+      env: COMPILER="clang++"
+
+before_install:
+  - echo "Compiler: $COMPILER"
+  - cmake --version
+
+install:
+  - echo "Installing dependencies..."
+  - # Установите специфичные для вашего проекта зависимости ЗДЕСЬ.
+  - # Пример: sudo apt-get update && sudo apt-get install libboost-dev
+
+before_script:
+  - echo "Configuring CMake..."
+  - cmake -H. -Bbuild -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_COMPILER="$COMPILER"
+
+script:
+  - echo "Building..."
+  - cmake --build build --config Release
+
+after_success:
+  - echo "Tests passed!"
+  - # Добавьте код для деплоя вашей библиотеки (если нужно)
+
+after_failure:
+  - echo "Tests failed!"
+
+notifications:
+  email:
+    recipients:
+      - your_email@example.com  # ЗАМЕНИТЕ СВОИМ АДРЕСОМ
+    on_success: change
+    on_failure: always
