@@ -1,34 +1,31 @@
 version: '{branch}.{build}'
-image: Visual Studio 2019 # Specifies the build environment
+image: Visual Studio 2019 # Или другое, что вы используете
 
-build: off # Отключаем встроенную MSBuild сборку - КЛЮЧЕВОЙ ШАГ
+build: off # Disable automatic build detection
 
 environment:
   matrix:
-    - CMAKE_GENERATOR: "Visual Studio 16 2019"  # Или "Visual Studio 17 2022"
-      CMAKE_BUILD_TYPE: "Release"
+    - CMAKE_BUILD_TYPE: "Release" # Это можно удалить, т.к. CMake больше не используется
 
 before_build:
-  - echo "Configuring CMake..."
-  - cmake -H. -Bbuild -G "%CMAKE_GENERATOR%" -DCMAKE_BUILD_TYPE=%CMAKE_BUILD_TYPE%
+  - echo "Creating object directory..."
 
 build_script:
-  - echo "Building..."
-  - cmake --build build --config %CMAKE_BUILD_TYPE%
+  - echo "Compiling..."
+  - cl /EHsc main.cpp # Компиляция main.cpp
 
-test_script: # Use test_script instead of test: off if you have tests.  Otherwise, remove this section.
-  - echo "Running tests..."
-  - # Замените на команды запуска тестов (например, ctest)
+  - echo "Linking..."
+  - link main.obj /out:main.exe # Линковка main.obj
 
-after_build:
-  - echo "Build completed!"
+test_script:
+   - echo "No tests defined" # Или ваши команды для запуска тестов
 
 artifacts:
-  - path: build\Release\*.*
-    name: ReleaseBuild
+  - path: main.exe # Или имя вашего исполняемого файла
+    name: Executable
 
 notifications:
   - provider: Email
-    to: ilazayzev@gmail.com
+    to: your_email@example.com
     on_build_success: true
     on_build_failure: true

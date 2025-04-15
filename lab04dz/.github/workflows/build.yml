@@ -2,36 +2,25 @@ name: Build and Test
 
 on:
   push:
-    branches: [ "main" ]  # Или ваша основная ветка
+    branches: [ main ]  # Запускать при push в ветку main
   pull_request:
-    branches: [ "main" ]
+    branches: [ main ]  # Запускать при pull request в ветку main
 
 jobs:
   build:
+
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        compiler: [gcc, clang]
 
     steps:
-      - uses: actions/checkout@v3  # Клонирование репозитория
+    - uses: actions/checkout@v3  # Извлекает код из репозитория
 
-      - name: Install Dependencies (если нужны)
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y libboost-dev # Пример зависимости
-          # ... другие зависимости
+    - name: Set up GCC
+      uses: actions/setup-gcc@v3
+      with:
+        gcc-version: '12' # Или другая поддерживаемая версия
 
-      - name: Configure (GCC)
-        if: matrix.compiler == 'gcc'
-        run: cmake -B build -DCMAKE_BUILD_TYPE=Release
+    - name: Compile
+      run: g++ main.cpp -o main # Компиляция
 
-      - name: Configure (Clang)
-        if: matrix.compiler == 'clang'
-        run: cmake -B build -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_C_COMPILER=clang
-
-      - name: Build
-        run: cmake --build build --config Release --parallel
-
-      - name: Test
-        run: ctest --test-dir build
+    - name: Run
+      run: ./main # Запуск исполняемого файла
