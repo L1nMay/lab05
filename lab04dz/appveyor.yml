@@ -6,10 +6,16 @@ build: off
 
 build_script:
   - echo "Starting build..."
-  - g++ main.cpp -o hello  # Linux не требует расширения .exe
+  - g++ main.cpp -o hello
   - echo "Build complete!"
 
 test_script:
   - echo "Running the program..."
-  - ./hello  # Запускаем программу
+  - ./hello > output.txt
+  - echo "Program output:"
+  - cat output.txt  # Выводим содержимое output.txt в лог (Linux)
+  # - type output.txt # Для Windows используйте эту команду вместо cat
   - echo "Tests complete!"
+
+artifacts:
+  - path: output.txt
