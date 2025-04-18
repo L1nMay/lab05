@@ -1,31 +1,15 @@
-version: '{branch}.{build}'
-image: Visual Studio 2019 # Или другое, что вы используете
+version: '{build}'
+platform: x64
+configuration: Release
 
-build: off # Disable automatic build detection
-
-environment:
-  matrix:
-    - CMAKE_BUILD_TYPE: "Release" # Это можно удалить, т.к. CMake больше не используется
-
-before_build:
-  - echo "Creating object directory..."
+build: off
 
 build_script:
-  - echo "Compiling..."
-  - cl /EHsc main.cpp # Компиляция main.cpp
-
-  - echo "Linking..."
-  - link main.obj /out:main.exe # Линковка main.obj
+  - echo "Starting build..."
+  - g++ main.cpp -o hello  # Linux не требует расширения .exe
+  - echo "Build complete!"
 
 test_script:
-   - echo "No tests defined" # Или ваши команды для запуска тестов
-
-artifacts:
-  - path: main.exe # Или имя вашего исполняемого файла
-    name: Executable
-
-notifications:
-  - provider: Email
-    to: your_email@example.com
-    on_build_success: true
-    on_build_failure: true
+  - echo "Running the program..."
+  - ./hello  # Запускаем программу
+  - echo "Tests complete!"
