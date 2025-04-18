@@ -12,9 +12,8 @@ build_script:
 test_script:
   - echo "Running the program..."
   - ./hello > output.txt
-  - echo "Program output:"
-  - cat output.txt  # Выводим содержимое output.txt в лог (Linux)
-  # - type output.txt # Для Windows используйте эту команду вместо cat
+  - echo "Checking if output.txt exists:"
+  - ls -l output.txt
   - echo "Tests complete!"
 
 artifacts:
