@@ -14,6 +14,7 @@ jobs:
         sudo apt-get update
         sudo apt-get install -y gsed
         sudo apt-get install -y gnome-screenshot
+        sudo apt-get install -y xvfb
     - name: Конфигурация CMake
       run: cmake -B _build -DCMAKE_BUILD_TYPE=Release
     - name: Сборка
