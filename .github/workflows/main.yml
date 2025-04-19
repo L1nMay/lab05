@@ -19,7 +19,7 @@ jobs:
         sudo apt-get install -y gsed
         sudo apt-get install -y xvfb  # Для скриншотов
         sudo apt-get install -y gnome-screenshot
-
+        which gnome-screenshot # проверка
     - name: Конфигурация CMake
       run: cmake -B _build -DCMAKE_BUILD_TYPE=Release
 
@@ -37,7 +37,7 @@ jobs:
       run: |
         mkdir -p artifacts
         export DISPLAY=:1
-        which gnome-screenshot
+        which gnome-screenshot # проверка
         xvfb-run --auto-servernum --server-args='-screen 0 320x240x16' gnome-screenshot --file artifacts/screenshot.png
 
     - name: Загрузка артефактов (если тесты упали)
