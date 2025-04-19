@@ -1,40 +1,47 @@
 name: Build and Test
+
 on:
   push:
     branches: [ main ]
   pull_request:
     branches: [ main ]
+
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
     - uses: actions/checkout@v3
+
     - name: Установка зависимостей
       run: |
         sudo apt-get update
         sudo apt-get install -y gsed
+        sudo apt-get install -y xvfb  # Для скриншотов
         sudo apt-get install -y gnome-screenshot
-        sudo apt-get install -y xvfb
+
     - name: Конфигурация CMake
       run: cmake -B _build -DCMAKE_BUILD_TYPE=Release
+
     - name: Сборка
       run: cmake --build _build
+
     - name: Тестирование
       run: cmake --build _build --target test -- ARGS=--verbose
+
     - name: Установка
       run: cmake --build _build --target install
-    - name: Сделать скриншот
+
+    - name: Сделать скриншот (если тесты упали)
       if: failure()
       run: |
-        mkdir artifacts
-        sleep 5s
+        mkdir -p artifacts
         export DISPLAY=:1
         xvfb-run --auto-servernum --server-args='-screen 0 320x240x16' gnome-screenshot --file artifacts/screenshot.png
-    - name: Загрузка артефактов
+
+    - name: Загрузка артефактов (если тесты упали)
       if: failure()
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: artifacts
         path: artifacts
-        retention-days: 1 # Опционально, чтобы не хранить артефакты долго
-      retry: 3   # вот эта магия~
