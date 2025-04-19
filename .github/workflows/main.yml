@@ -20,10 +20,10 @@ jobs:
         sudo apt-get install -y xvfb  # Для скриншотов
 
     - name: Очистка каталога сборки
-      run: rm -rf _build  # Добавьте эту строку
+      run: rm -rf _build
 
     - name: Конфигурация CMake
-      run: cmake -B _build -DCMAKE_BUILD_TYPE=Release
+      run: cmake -B _build -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTS=ON # Добавьте -DBUILD_TESTS=ON
 
     - name: Сборка
       run: cmake --build _build
