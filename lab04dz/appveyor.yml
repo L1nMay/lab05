@@ -1,8 +1,6 @@
 version: '{build}'
 platform: x64
 configuration: Release
-  
-build: off
 
 build_script:
   - echo "Starting build..."
