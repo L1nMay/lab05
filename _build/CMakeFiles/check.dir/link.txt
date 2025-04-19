@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/check.dir/tests/print.cpp.o CMakeFiles/check.dir/tests/test1.cpp.o -o check  libMyProject.a _build/_build/third-party/gtest/googlemock/gtest/libgtest_main.a _build/_build/third-party/gtest/googlemock/gtest/libgtest.a
