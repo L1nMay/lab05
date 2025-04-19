@@ -1,0 +1,18 @@
+version: '{build}'
+platform: x64
+configuration: Release
+
+init:
+  - ps: Write-Host "Starting build with PowerShell"
+
+build_script:
+  - echo "Starting build..."
+  - g++ main.cpp -o hello
+  - echo "Build complete!"
+
+test_script:
+  - echo "Running the program..."
+  - ./hello > output.txt
+  - echo "Program output:"
+  - cat output.txt
+  - echo "Tests complete!"
