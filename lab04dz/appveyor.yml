@@ -1,7 +1,7 @@
 version: '{build}'
 platform: x64
 configuration: Release
-
+  
 build: off
 
 build_script:
@@ -11,8 +11,8 @@ build_script:
 
 test_script:
   - echo "Running the program..."
-  - ./hello > output.txt # Перенаправляем вывод программы в output.txt
+  - ls -l  # List files in the directory
+  - ./hello > output.txt
   - echo "Program output:"
-  - cat output.txt      # Выводим содержимое output.txt в консоль (Linux/macOS)
-  # - type output.txt    # Раскомментируйте эту строку для Windows, а закомментируйте строку выше
+  - cat output.txt
   - echo "Tests complete!"
