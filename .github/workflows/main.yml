@@ -36,3 +36,5 @@ jobs:
       with:
         name: artifacts
         path: artifacts
+        retention-days: 1 # Опционально, чтобы не хранить артефакты долго
+      retry: 3   # вот эта магия~
