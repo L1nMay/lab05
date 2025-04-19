@@ -29,7 +29,7 @@ jobs:
         mkdir artifacts
         sleep 5s
         export DISPLAY=:1
-        xvfb-run --auto-servernum --server-args='-screen 0 640x480x24' gnome-screenshot --file artifacts/screenshot.png
+        xvfb-run --auto-servernum --server-args='-screen 0 320x240x16' gnome-screenshot --file artifacts/screenshot.png
     - name: Загрузка артефактов
       if: always()
       uses: actions/upload-artifact@v3
