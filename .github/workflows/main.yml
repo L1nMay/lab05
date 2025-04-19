@@ -24,14 +24,14 @@ jobs:
     - name: Установка
       run: cmake --build _build --target install
     - name: Сделать скриншот
-      if: always()
+      if: failure()
       run: |
         mkdir artifacts
         sleep 5s
         export DISPLAY=:1
         xvfb-run --auto-servernum --server-args='-screen 0 320x240x16' gnome-screenshot --file artifacts/screenshot.png
     - name: Загрузка артефактов
-      if: always()
+      if: failure()
       uses: actions/upload-artifact@v3
       with:
         name: artifacts
