@@ -12,6 +12,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+      with:
+        submodules: recursive  # Добавьте это, чтобы рекурсивно получать подмодули
 
     - name: Установка зависимостей (ОБЩИЕ)
       run: |
@@ -23,7 +25,7 @@ jobs:
       run: rm -rf _build
 
     - name: Конфигурация CMake
-      run: cmake -B _build -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTS=ON # Добавьте -DBUILD_TESTS=ON
+      run: cmake -B _build -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTS=ON
 
     - name: Сборка
       run: cmake --build _build
