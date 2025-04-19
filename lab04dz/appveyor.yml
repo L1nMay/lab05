@@ -1,6 +1,5 @@
 version: '{build}'
 platform: x64
-configuration: Release
 
 build_script:
   - echo "Starting build..."
@@ -9,7 +8,6 @@ build_script:
 
 test_script:
   - echo "Running the program..."
-  - ls -l  # List files in the directory
   - ./hello > output.txt
   - echo "Program output:"
   - cat output.txt
