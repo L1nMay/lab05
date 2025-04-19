@@ -1,18 +1,24 @@
 #include <gtest/gtest.h>
 #include <fstream>
 #include "print.hpp"
-TEST(Print, InFileStream)
-{
-  std::string filepath = "file.txt";
-  std::string text = "hello";
-  std::ofstream out{filepath};
+#include <gtest/gtest.h>
 
-  print(text, out);
-  out.close();
+// Пример функции, которую мы будем тестировать
+int add(int a, int b) {
+  return a + b;
+}
 
-  std::string result;
-  std::ifstream in{filepath};
-  in >> result;
+// Тест, который должен пройти
+TEST(AddTest, PositiveNumbers) {
+  ASSERT_EQ(add(2, 2), 4);
+}
 
-  EXPECT_EQ(result, text);
+// Тест, который мы намеренно сломаем
+TEST(AddTest, NegativeNumbers) {
+  ASSERT_EQ(add(-2, -2), -5);  // <--- Намеренная ошибка: должно быть -4
+}
+
+// Еще один тест, который должен пройти
+TEST(AddTest, Zero) {
+  ASSERT_EQ(add(0, 0), 0);
 }
