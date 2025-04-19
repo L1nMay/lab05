@@ -32,13 +32,13 @@ jobs:
     - name: Установка
       run: cmake --build _build --target install
 
-        - name: Сделать скриншот (если тесты упали)
-          if: failure()
-          run: |
-            mkdir -p artifacts
-            export DISPLAY=:1
-            which gnome-screenshot
-            xvfb-run --auto-servernum --server-args='-screen 0 320x240x16' gnome-screenshot --file artifacts/screenshot.png
+    - name: Сделать скриншот (если тесты упали)
+      if: failure()
+      run: |
+        mkdir -p artifacts
+        export DISPLAY=:1
+        which gnome-screenshot
+        xvfb-run --auto-servernum --server-args='-screen 0 320x240x16' gnome-screenshot --file artifacts/screenshot.png
 
     - name: Загрузка артефактов (если тесты упали)
       if: failure()
