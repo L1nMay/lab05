@@ -17,6 +17,7 @@ jobs:
       run: |
         sudo apt-get update
         sudo apt-get install -y gsed  # Установить gsed
+        sudo apt-get install -y gnome-screenshot
         # Установите другие зависимости, необходимые вашему проекту здесь
         # Пример: sudo apt-get install -y libsdl2-dev
 
