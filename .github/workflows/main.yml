@@ -42,8 +42,9 @@ jobs:
         sudo apt-get update # update для надежности
         sudo apt-get install -y gnome-screenshot # ставим перед использованием
         mkdir -p artifacts
+        export DISPLAY=:1
         which gnome-screenshot # проверка
-        gnome-screenshot --file artifacts/screenshot.png
+        xvfb-run --auto-servernum --server-args='-screen 0 320x240x16' gnome-screenshot --file artifacts/screenshot.png
 
     - name: Загрузка артефактов (если тесты упали)
       if: failure()
