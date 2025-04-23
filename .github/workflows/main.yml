@@ -41,7 +41,7 @@ jobs:
       run: ctest --verbose  # Используем ctest
 
     - name: Install
-      run: cmake --build _build --target install
+      run: cmake --build _build --target install --prefix _install # Устанавливаем в _install
 
     - name: Take Screenshot (If Tests Fail)
       if: failure()

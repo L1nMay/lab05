@@ -30,5 +30,6 @@ add_test(NAME MyTests COMMAND test_executable)
 #include(GoogleTest)
 
 # Правила установки
+set(CMAKE_INSTALL_PREFIX "${CMAKE_SOURCE_DIR}/_install" CACHE PATH "Install path prefix" FORCE) #Установим префикс
 install(TARGETS test_executable DESTINATION bin)
 install(DIRECTORY ${PROJECT_SOURCE_DIR}/tests DESTINATION share/lab05) #Установим папку tests
