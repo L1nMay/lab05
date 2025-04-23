@@ -1,5 +1,5 @@
 #include "gtest/gtest.h"
-#include "funcs.h"
+#include "print.hpp"
 
 TEST(AddTest, PositiveNumbers) {
     ASSERT_EQ(add(2, 2), 4);
