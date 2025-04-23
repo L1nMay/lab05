@@ -8,7 +8,7 @@ include(FetchContent)
 FetchContent_Declare(
         googletest
         GIT_REPOSITORY https://github.com/google/googletest
-        GIT_BRANCH   main # Используем ветку main (не рекомендуется для production)
+        GIT_BRANCH   main # Используем ветку main
 )
 FetchContent_MakeAvailable(googletest)
 
