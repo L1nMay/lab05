@@ -1,17 +1,30 @@
 cmake_minimum_required(VERSION 3.10)
-project(MyProject)
-set(PROJECT_NAME MyProject)
+project(lab05)
 
-add_library(${PROJECT_NAME} tests/print.cpp)   # Создаем статическую библиотеку MyProject
-include_directories(${CMAKE_SOURCE_DIR}/tests) #  Чтобы тесты могли найти хидер
+set(CMAKE_CXX_STANDARD 14)
 
-if(BUILD_TESTS)
-enable_testing()
-add_subdirectory(third-party/gtest _build/third-party/gtest)
-file(GLOB ${PROJECT_NAME}_TEST_SOURCES tests/*.cpp)
-add_executable(check ${${PROJECT_NAME}_TEST_SOURCES} tests/print.cpp)
-target_link_libraries(check ${PROJECT_NAME} gtest_main)
-add_test(NAME check COMMAND check)
-target_compile_options(gtest PRIVATE -Wno-maybe-uninitialized)
-include_directories(${CMAKE_SOURCE_DIR}/tests)
-endif()
+# Включаем Google Test
+include(FetchContent)
+FetchContent_Declare(
+        googletest
+        GIT_REPOSITORY https://github.com/google/googletest
+        GIT_TAG        v1.10.0
+)
+FetchContent_MakeAvailable(googletest)
+
+# Создаем библиотеку MyProject (если она нужна)
+add_library(MyProject tests/print.cpp)  #  Или другие файлы .cpp, если они есть
+target_include_directories(MyProject PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}) #  Важно!
+
+# Создаем исполняемый файл для тестов
+add_executable(check tests/test1.cpp tests/print.cpp)  # Добавил tests/print.cpp
+
+# Связываем тесты с библиотекой MyProject и gtest
+target_link_libraries(check MyProject gtest gtest_main)
+
+# Указываем, где искать заголовочные файлы для MyProject
+target_include_directories(check PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}) # Важно!
+
+# Добавляем тесты CTest
+include(GoogleTest)
+gtest_discover_tests(check)
