@@ -32,13 +32,13 @@ jobs:
       run: rm -rf _build
 
     - name: Configure CMake
-      run: cmake -B _build -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTS=ON -DCMAKE_PREFIX_PATH=/usr/ #Указываем путь
+      run: cmake -B _build -DCMAKE_BUILD_TYPE=Release
 
     - name: Build
       run: cmake --build _build
 
     - name: Run Tests
-      run: cmake --build _build --target test -- ARGS=--verbose
+      run: ctest --verbose  # Используем ctest
 
     - name: Install
       run: cmake --build _build --target install
