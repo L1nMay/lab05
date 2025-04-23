@@ -20,7 +20,7 @@ jobs:
         sudo apt-get update
         sudo apt-get install -y sed
         sudo apt-get install -y xvfb
-        sudo apt-get install -y libgtest-dev
+        sudo apt-get install -y libgtest-dev #Устанавливаем gtest
 
     - name: Install CMake
       run: sudo apt-get update && sudo apt-get install -y cmake
@@ -28,11 +28,11 @@ jobs:
     - name: Print Environment Variables
       run: printenv
 
-    - name: Remove Build Directory  # <--- Убедитесь, что этот шаг здесь
-      run: rm -rf _build        # <---
+    - name: Remove Build Directory
+      run: rm -rf _build
 
     - name: Configure CMake
-      run: cmake -B _build -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTS=ON -DCMAKE_PREFIX_PATH=/usr/
+      run: cmake -B _build -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTS=ON -DCMAKE_PREFIX_PATH=/usr/ #Указываем путь
 
     - name: Build
       run: cmake --build _build

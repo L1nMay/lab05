@@ -3,18 +3,35 @@ project(lab05)
 
 set(CMAKE_CXX_STANDARD 14)
 
+# Пути
+set(PROJECT_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR})
+set(GTEST_INCLUDE_DIR /usr/include/gtest) #  Правильный путь!
+
 # Создаем библиотеку MyProject
-add_library(MyProject tests/print.cpp)
-target_include_directories(MyProject PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+add_library(MyProject ${PROJECT_SOURCE_DIR}/tests/print.cpp)
+target_include_directories(MyProject PUBLIC ${PROJECT_SOURCE_DIR})  # Путь к заголовочным файлам
 
 # Создаем исполняемый файл для тестов
-add_executable(check tests/test1.cpp) #Указываем, что print.cpp входит в check
+add_executable(check ${PROJECT_SOURCE_DIR}/tests/test1.cpp)
 
-# Указываем, где искать заголовочные файлы для check (важно!)
-target_include_directories(check PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+# Указываем пути и флаги для check
+target_include_directories(check PUBLIC
+    ${PROJECT_SOURCE_DIR}
+    ${GTEST_INCLUDE_DIR}
+)
 
-# Связываем тесты с библиотекой MyProject и gtest
-target_link_libraries(check MyProject gtest gtest_main)
+target_link_libraries(check
+    MyProject
+    gtest
+    gtest_main
+)
+
+# Флаги компиляции (на всякий случай)
+target_compile_options(check PUBLIC
+    "-Wall"
+    "-Wextra"
+    "-pthread"  # Если gtest требует pthread
+)
 
 # Добавляем тесты CTest
 include(GoogleTest)
