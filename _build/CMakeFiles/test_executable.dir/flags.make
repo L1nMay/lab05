@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/kali/workspace/lab05 -I/usr/include/gtest
+CXX_INCLUDES = -I/usr/include/gtest
 
-CXX_FLAGS = -O3 -DNDEBUG -std=gnu++14 -Wall -Wextra -pthread
+CXX_FLAGS = -O3 -DNDEBUG -std=gnu++14
 

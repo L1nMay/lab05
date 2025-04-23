@@ -1,2 +1,2 @@
-# Empty dependencies file for check.
+# Empty dependencies file for test_executable.
 # This may be replaced when dependencies are built.

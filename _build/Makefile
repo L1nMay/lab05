@@ -117,37 +117,48 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named MyProject
+# Target rules for targets named test_executable
 
 # Build rule for target.
-MyProject: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 MyProject
-.PHONY : MyProject
+test_executable: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_executable
+.PHONY : test_executable
 
 # fast build rule for target.
-MyProject/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MyProject.dir/build.make CMakeFiles/MyProject.dir/build
-.PHONY : MyProject/fast
+test_executable/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_executable.dir/build.make CMakeFiles/test_executable.dir/build
+.PHONY : test_executable/fast
 
-#=============================================================================
-# Target rules for targets named check
+test_main.o: test_main.cpp.o
+.PHONY : test_main.o
 
-# Build rule for target.
-check: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 check
-.PHONY : check
+# target to build an object file
+test_main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_executable.dir/build.make CMakeFiles/test_executable.dir/test_main.cpp.o
+.PHONY : test_main.cpp.o
 
-# fast build rule for target.
-check/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/check.dir/build.make CMakeFiles/check.dir/build
-.PHONY : check/fast
+test_main.i: test_main.cpp.i
+.PHONY : test_main.i
+
+# target to preprocess a source file
+test_main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_executable.dir/build.make CMakeFiles/test_executable.dir/test_main.cpp.i
+.PHONY : test_main.cpp.i
+
+test_main.s: test_main.cpp.s
+.PHONY : test_main.s
+
+# target to generate assembly for a file
+test_main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_executable.dir/build.make CMakeFiles/test_executable.dir/test_main.cpp.s
+.PHONY : test_main.cpp.s
 
 tests/print.o: tests/print.cpp.o
 .PHONY : tests/print.o
 
 # target to build an object file
 tests/print.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MyProject.dir/build.make CMakeFiles/MyProject.dir/tests/print.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_executable.dir/build.make CMakeFiles/test_executable.dir/tests/print.cpp.o
 .PHONY : tests/print.cpp.o
 
 tests/print.i: tests/print.cpp.i
@@ -155,7 +166,7 @@ tests/print.i: tests/print.cpp.i
 
 # target to preprocess a source file
 tests/print.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MyProject.dir/build.make CMakeFiles/MyProject.dir/tests/print.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_executable.dir/build.make CMakeFiles/test_executable.dir/tests/print.cpp.i
 .PHONY : tests/print.cpp.i
 
 tests/print.s: tests/print.cpp.s
@@ -163,7 +174,7 @@ tests/print.s: tests/print.cpp.s
 
 # target to generate assembly for a file
 tests/print.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MyProject.dir/build.make CMakeFiles/MyProject.dir/tests/print.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_executable.dir/build.make CMakeFiles/test_executable.dir/tests/print.cpp.s
 .PHONY : tests/print.cpp.s
 
 tests/test1.o: tests/test1.cpp.o
@@ -171,7 +182,7 @@ tests/test1.o: tests/test1.cpp.o
 
 # target to build an object file
 tests/test1.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/check.dir/build.make CMakeFiles/check.dir/tests/test1.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_executable.dir/build.make CMakeFiles/test_executable.dir/tests/test1.cpp.o
 .PHONY : tests/test1.cpp.o
 
 tests/test1.i: tests/test1.cpp.i
@@ -179,7 +190,7 @@ tests/test1.i: tests/test1.cpp.i
 
 # target to preprocess a source file
 tests/test1.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/check.dir/build.make CMakeFiles/check.dir/tests/test1.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_executable.dir/build.make CMakeFiles/test_executable.dir/tests/test1.cpp.i
 .PHONY : tests/test1.cpp.i
 
 tests/test1.s: tests/test1.cpp.s
@@ -187,7 +198,7 @@ tests/test1.s: tests/test1.cpp.s
 
 # target to generate assembly for a file
 tests/test1.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/check.dir/build.make CMakeFiles/check.dir/tests/test1.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_executable.dir/build.make CMakeFiles/test_executable.dir/tests/test1.cpp.s
 .PHONY : tests/test1.cpp.s
 
 # Help Target
@@ -198,8 +209,10 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... MyProject"
-	@echo "... check"
+	@echo "... test_executable"
+	@echo "... test_main.o"
+	@echo "... test_main.i"
+	@echo "... test_main.s"
 	@echo "... tests/print.o"
 	@echo "... tests/print.i"
 	@echo "... tests/print.s"

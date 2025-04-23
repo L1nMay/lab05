@@ -8,7 +8,9 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/kali/workspace/lab05/tests/test1.cpp" "CMakeFiles/check.dir/tests/test1.cpp.o" "gcc" "CMakeFiles/check.dir/tests/test1.cpp.o.d"
+  "/home/kali/workspace/lab05/test_main.cpp" "CMakeFiles/test_executable.dir/test_main.cpp.o" "gcc" "CMakeFiles/test_executable.dir/test_main.cpp.o.d"
+  "/home/kali/workspace/lab05/tests/print.cpp" "CMakeFiles/test_executable.dir/tests/print.cpp.o" "gcc" "CMakeFiles/test_executable.dir/tests/print.cpp.o.d"
+  "/home/kali/workspace/lab05/tests/test1.cpp" "CMakeFiles/test_executable.dir/tests/test1.cpp.o" "gcc" "CMakeFiles/test_executable.dir/tests/test1.cpp.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

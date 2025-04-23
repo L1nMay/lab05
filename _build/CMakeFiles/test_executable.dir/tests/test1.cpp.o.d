@@ -1,4 +1,4 @@
-CMakeFiles/check.dir/tests/test1.cpp.o: \
+CMakeFiles/test_executable.dir/tests/test1.cpp.o: \
  /home/kali/workspace/lab05/tests/test1.cpp /usr/include/stdc-predef.h \
  /usr/include/gtest/gtest.h /usr/include/c++/14/cstddef \
  /usr/include/x86_64-linux-gnu/c++/14/bits/c++config.h \

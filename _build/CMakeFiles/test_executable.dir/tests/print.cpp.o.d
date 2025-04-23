@@ -1,4 +1,4 @@
-CMakeFiles/MyProject.dir/tests/print.cpp.o: \
+CMakeFiles/test_executable.dir/tests/print.cpp.o: \
  /home/kali/workspace/lab05/tests/print.cpp /usr/include/stdc-predef.h \
  /home/kali/workspace/lab05/tests/print.hpp /usr/include/c++/14/iostream \
  /usr/include/c++/14/bits/requires_hosted.h \
