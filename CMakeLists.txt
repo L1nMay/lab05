@@ -28,3 +28,7 @@ add_test(NAME MyTests COMMAND test_executable)
 
 # Закомментируйте эту строку
 #include(GoogleTest)
+
+# Правила установки
+install(TARGETS test_executable DESTINATION bin)
+install(DIRECTORY ${PROJECT_SOURCE_DIR}/tests DESTINATION share/lab05) #Установим папку tests

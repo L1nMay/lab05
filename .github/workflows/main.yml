@@ -40,9 +40,8 @@ jobs:
     - name: Run Tests
       run: ctest --verbose  # Используем ctest
 
-    # УДАЛЕН ШАГ INSTALL
-    # - name: Install
-    #   run: cmake --build _build --target install
+    - name: Install
+      run: cmake --build _build --target install
 
     - name: Take Screenshot (If Tests Fail)
       if: failure()
