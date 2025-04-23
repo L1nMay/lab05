@@ -21,10 +21,8 @@ jobs:
         sudo apt-get install -y sed
         sudo apt-get install -y xvfb  # For screenshots
 
-    - name: Get CMake (Specify Version)
-      uses: lukka/get-cmake@v3.15.3
-      with:
-        cmakeVersion: '3.15.3' #или попробуйте 3.20.0
+    - name: Install CMake
+      run: sudo apt-get update && sudo apt-get install -y cmake #Устанавливаем cmake
 
     - name: Print Environment Variables
       run: printenv # Debugging
