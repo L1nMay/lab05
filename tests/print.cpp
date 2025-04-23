@@ -8,4 +8,4 @@ int add(int a, int b) {
 
 void print(const std::string& text, std::ofstream& out) {
     out << text << std::endl;
-}~
+}

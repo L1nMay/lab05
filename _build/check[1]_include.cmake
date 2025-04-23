@@ -1,0 +1,5 @@
+if(EXISTS "/home/kali/workspace/lab05/_build/check[1]_tests.cmake")
+  include("/home/kali/workspace/lab05/_build/check[1]_tests.cmake")
+else()
+  add_test(check_NOT_BUILT check_NOT_BUILT)
+endif()
