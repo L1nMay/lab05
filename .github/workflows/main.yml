@@ -32,7 +32,7 @@ jobs:
       run: rm -rf _build
 
     - name: Configure CMake
-      run: cmake -B _build -DCMAKE_BUILD_TYPE=Release
+      run: cmake -B _build -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${GITHUB_WORKSPACE}/_install
 
     - name: Build
       run: cmake --build _build
@@ -41,7 +41,7 @@ jobs:
       run: ctest --verbose  # Используем ctest
 
     - name: Install
-      run: cmake --build _build --target install --prefix _install # Устанавливаем в _install
+      run: cmake --build _build --target install
 
     - name: Take Screenshot (If Tests Fail)
       if: failure()
