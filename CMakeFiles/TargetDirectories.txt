@@ -1,3 +1,0 @@
-/home/kali/workspace/lab05/CMakeFiles/MyProject.dir
-/home/kali/workspace/lab05/CMakeFiles/edit_cache.dir
-/home/kali/workspace/lab05/CMakeFiles/rebuild_cache.dir
