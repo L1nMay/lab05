@@ -8,7 +8,7 @@ add_library(MyProject tests/print.cpp)
 target_include_directories(MyProject PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
 # Создаем исполняемый файл для тестов
-add_executable(check tests/test1.cpp tests/print.cpp) #Указываем, что print.cpp входит в check
+add_executable(check tests/test1.cpp) #Указываем, что print.cpp входит в check
 
 # Указываем, где искать заголовочные файлы для check (важно!)
 target_include_directories(check PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
