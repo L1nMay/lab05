@@ -22,3 +22,9 @@ target_link_libraries(test_executable
     gtest
     gtest_main
 )
+
+# Явно указываем, что test_executable является тестом CTest
+add_test(NAME MyTests COMMAND test_executable)
+
+# Закомментируйте эту строку
+#include(GoogleTest)
