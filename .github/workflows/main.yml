@@ -13,25 +13,26 @@ jobs:
     steps:
     - uses: actions/checkout@v3
       with:
-        submodules: recursive  # Добавьте это, чтобы рекурсивно получать подмодули
+        submodules: recursive
 
     - name: Install Dependencies (General)
       run: |
         sudo apt-get update
         sudo apt-get install -y sed
-        sudo apt-get install -y xvfb  # For screenshots
+        sudo apt-get install -y xvfb
+        sudo apt-get install -y libgtest-dev #Устанавливаем gtest
 
     - name: Install CMake
-      run: sudo apt-get update && sudo apt-get install -y cmake #Устанавливаем cmake
+      run: sudo apt-get update && sudo apt-get install -y cmake
 
     - name: Print Environment Variables
-      run: printenv # Debugging
+      run: printenv
 
     - name: Remove Build Directory
       run: rm -rf _build
 
     - name: Configure CMake
-      run: cmake -B _build -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTS=ON
+      run: cmake -B _build -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTS=ON -DCMAKE_PREFIX_PATH=/usr/ #Указываем путь
 
     - name: Build
       run: cmake --build _build
@@ -45,11 +46,11 @@ jobs:
     - name: Take Screenshot (If Tests Fail)
       if: failure()
       run: |
-        sudo apt-get update # Update for reliability
-        sudo apt-get install -y gnome-screenshot # Install before use
+        sudo apt-get update
+        sudo apt-get install -y gnome-screenshot
         mkdir -p artifacts
         export DISPLAY=:1
-        which gnome-screenshot # Check
+        which gnome-screenshot
         xvfb-run --auto-servernum --server-args='-screen 0 320x240x16' gnome-screenshot --file artifacts/screenshot.png
 
     - name: Upload Artifacts (If Tests Fail)
