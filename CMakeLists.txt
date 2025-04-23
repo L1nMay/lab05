@@ -3,18 +3,18 @@ project(lab05)
 
 set(CMAKE_CXX_STANDARD 14)
 
-# Создаем библиотеку MyProject (если она нужна)
-add_library(MyProject tests/print.cpp)  #  Или другие файлы .cpp, если они есть
-target_include_directories(MyProject PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}) #  Важно!
+# Создаем библиотеку MyProject
+add_library(MyProject tests/print.cpp)
+target_include_directories(MyProject PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
 # Создаем исполняемый файл для тестов
-add_executable(check tests/test1.cpp tests/print.cpp)  # Добавил tests/print.cpp
+add_executable(check tests/test1.cpp tests/print.cpp) #Указываем, что print.cpp входит в check
+
+# Указываем, где искать заголовочные файлы для check (важно!)
+target_include_directories(check PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
 # Связываем тесты с библиотекой MyProject и gtest
 target_link_libraries(check MyProject gtest gtest_main)
-
-# Указываем, где искать заголовочные файлы для MyProject
-target_include_directories(check PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}) # Важно!
 
 # Добавляем тесты CTest
 include(GoogleTest)
